@@ -1,0 +1,71 @@
+<div *ngIf="text">
+  <div class="d-flex align-items-end container__text" (click) = 'checkActiveTime()' [style.flex-direction]="flex_direction">
+    <div class="text px-3 py-2  d-flex flex-column" [style.background-color]="bg_color" [style.color]="color_text">
+      <div class="d-inline">
+        <span *ngFor="let currentText of arrText">
+          <!-- check gif link -->
+          <ng-container [ngTemplateOutlet]="checkIsFile(currentText) ? file: checkIsImage(currentText) ? imageLink: checkIsGif(currentText) ? gifLink : checkIsLink(currentText) ? normalLink : text"></ng-container>
+            <ng-template #gifLink>
+              <div *ngIf="checkIsImageExist(currentText); then isGifImage else isNotGifImage">
+              </div>
+              <ng-template #isGifImage><img class="gif" src="{{currentText}}" alt="404 gif"/></ng-template>
+              <ng-template #isNotGifImage><p>{{currentText}}</p></ng-template>
+            </ng-template>
+          <!-- check normal link -->
+            <ng-template #normalLink>
+              <a target="_blank" href="{{currentText}}">{{currentText}}</a>
+            </ng-template>
+          <!-- check image link -->
+            <ng-template #imageLink>
+              <div *ngIf="checkIsImageExist(currentText); then isNormalImage else isNotNormalImage">
+              </div>
+              <ng-template #isNormalImage><img class="image" src="{{currentText}}" alt="404 image"/></ng-template>
+              <ng-template #isNotNormalImage><p>{{currentText}}</p></ng-template>
+            </ng-template>
+            <ng-template #file>
+              <div class="d-flex flex-wrap align-items-center" (click)="downloadFile(currentText)">
+                <div class="m-0 p-0 h-100" [ngSwitch]="checkExtension(currentText)">
+                    <p *ngSwitchCase="'excel'" class="icon-file">
+                      <i class="fa-solid fa-file-excel"></i>
+                    </p>
+                    <p *ngSwitchCase="'word'" class="icon-file">
+                      <i class="fas fa-file-word"></i>
+                    </p>
+                    <p *ngSwitchCase="'powerpoint'" class="icon-file">
+                      <i class="fa-solid fa-file-powerpoint"></i>
+                    </p>
+                    <p *ngSwitchCase="'pdf'" class="icon-file">
+                      <i class="fa-solid fa-file-pdf"></i>
+                    </p>
+                    <p *ngSwitchCase="'rar'" class="icon-file">
+                      <i class="fa-solid fa-file-zipper"></i>
+                    </p>
+                    <p *ngSwitchCase="'music'" class="icon-file">
+                      <i class="fa-solid fa-file-video"></i>
+                    </p>
+                    <p *ngSwitchCase="'text'" class="icon-file">
+                      <i class="fa-solid fa-file-lines"></i>
+                    </p>
+                    <p *ngSwitchCase="'code'" class="icon-file">
+                      <i class="fa-solid fa-file-code"></i>
+                    </p>
+                     <p *ngSwitchCase="'database'" class="icon-file">
+                      <i class="fas fa-database"></i>
+                    </p>
+                  <span *ngSwitchDefault><i class="fa-solid fa-file"></i></span>
+                </div>
+                <p class="text-file my-0 p-0 h-100">{{getFileName(currentText)}}</p>
+              </div>
+            </ng-template>
+          <!-- check text -->
+            <ng-template #text>
+              {{currentText}}
+            </ng-template>
+        </span>
+      </div>
+      <div class="time" [style.color]="color_time"><i class="fa-solid fa-clock"></i> {{time | date:'medium':'UTC +14'}}</div>
+    </div>
+
+  </div>
+
+</div>

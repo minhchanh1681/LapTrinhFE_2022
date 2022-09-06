@@ -1,0 +1,25 @@
+<div class="d-flex justify-content-between">
+  <h5>{{'Hồ Sơ'|translate}}</h5>
+</div>
+<div class="text-center image-user">
+  <div>
+    <img class="image-user__avatar"
+         src="{{this.profileService.src}}"
+         alt="">
+  </div>
+  <p class="text-center mt-2 fw-bold">{{this.profileService.userName}}</p>
+</div>
+<div class="user-description pb-5">
+
+</div>
+
+<div class="about pt-5">
+  <label>{{'Tên tài khoản'| translate}}</label>
+  <p class="text-wrap"><strong>{{this.profileService.userName}}</strong></p>
+
+  <label>{{'Trạng thái'| translate}}</label>
+  <p class="text-success fw-bold text-wrap">{{this.profileService.statusUser === true ? 'Đang hoạt động' : ''}}</p>
+  <p class="text-danger fw-bold text-wrap">{{this.profileService.statusUser === false || undefined || null ? 'Hoạt động vài phút trước' : ''}}</p>
+<!--  <label>Location</label>-->
+<!--  <p><strong>Linh Chieu, Thu Duc</strong></p>-->
+</div>

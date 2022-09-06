@@ -1,0 +1,65 @@
+<div class="position-relative">
+  <mdb-sidenav-content #sidenavContent class="position-absolute top-0 end-0">
+    <!-- Toggler -->
+    <button #sidenavToggle class=" btn-bar" (click)="sidenav.toggle()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <!-- Toggler -->
+  </mdb-sidenav-content>
+</div>
+<div class="row g-0 d-xl-flex d-xxl-flex d-lg-flex">
+  <div class="col-lg-12 col-md-12 shad">
+    <div class="px-4 pt-4 hv-100" *ngIf="status === 'chats'">
+      <app-chats></app-chats>
+    </div>
+    <div class="px-4 pt-4 hv-100" *ngIf="status === 'profile'">
+      <app-profile ></app-profile>
+    </div>
+    <div class="px-4 pt-4 hv-100" *ngIf="status === 'groups'">
+      <app-groups></app-groups>
+    </div>
+    <div class=" px-4 pt-4 hv-100" *ngIf="status === 'setting'">
+      <app-setting></app-setting>
+    </div>
+    <div class=" px-4 pt-4 hv-100" *ngIf="status === 'connect'">
+      <app-connect></app-connect>
+    </div>
+  </div>
+</div>
+<mdb-sidenav-layout>
+  <div class="position-relative">
+    <mdb-sidenav-content #sidenavContent class="position-absolute top-0 end-0">
+      <!-- Toggler -->
+      <button #sidenavToggle class=" btn-bar" (click)="sidenav.toggle()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <!-- Toggler -->
+    </mdb-sidenav-content>
+  </div>
+  <mdb-sidenav #sidenav>
+    <ul class="sidenav-menu d-flex m-auto flex-column justify-content-center">
+<!--      <div class="chat-logo  py-4">-->
+<!--        <a routerLink="/home">-->
+<!--          <img src="https://inkythuatso.com/uploads/images/2021/11/logo-telegram-inkyhtuatso-3-01-30-11-25-40.jpg"-->
+<!--               alt=""-->
+<!--               class="chat-logo__img">-->
+<!--        </a>-->
+<!--      </div>-->
+<!--      px-4 pt-4-->
+      <div class="d-flex flex-column justify-content-center m-auto px-4 pt-4 ">
+        <ul class="list-tabs">
+          <li id="chats" [class.tab-active]="status==='chats'"
+              (click)="tabsChange('chats')">{{'Trò chuyện'|translate}}</li>
+          <li id="profile" [class.tab-active]="status==='profile'"
+              (click)="tabsChange('profile')">{{'Hồ Sơ'|translate}}</li>
+          <li id="Groups" [class.tab-active]="status==='groups'"
+              (click)="tabsChange('groups')">{{'Nhóm'|translate}}</li>
+          <li id="setting" [class.tab-active]="status==='setting'"
+              (click)="tabsChange('setting')">{{'Cài Đặt'|translate}}</li>
+          <li id="connect" [class.tab-active]="status==='connect'"
+              (click)="tabsChange('connect')">{{'Kết nối'|translate}}</li>
+        </ul>
+      </div>
+    </ul>
+  </mdb-sidenav>
+</mdb-sidenav-layout>

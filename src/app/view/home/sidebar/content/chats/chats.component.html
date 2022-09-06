@@ -1,0 +1,40 @@
+<div class="bg-chats">
+  <h5>{{'Trò chuyện'|translate}}</h5>
+  <div id="search-form">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" placeholder="{{'Tìm kiếm'| translate}}" class="search-input"
+           [(ngModel)]="this.chatSidebarService.txtSearch">
+  </div>
+  <h5 class="mt-4">{{'Gần đây'|translate}}</h5>
+  <div class="chats style-5">
+
+    <a *ngFor="let u of this.chatSidebarService.userList | filter:this.chatSidebarService.txtSearch"
+       (click)="this.selectMessage(u)"
+    >
+
+      <div class="chats-left" *ngIf="u.type === 0">
+        <img class="chats-left__avatar"
+             src="{{u.src}}" alt="">
+        <span *ngIf="u.status === false || undefined || null else active" class="chats-left__status non-active">
+          <i class="fa-solid fa-period">
+            <i class="fa-solid fa-circle"></i>
+          </i>
+        </span>
+        <ng-template #active>
+            <span class="chats-left__status active">
+              <i class="fa-solid fa-period">
+                <i class="fa-solid fa-circle"></i>
+              </i>
+            </span>
+        </ng-template>
+        <div>
+          <span class="chats-left__name">{{u.name}}</span>
+          <br>
+          <span class="chats-left__messages"></span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
